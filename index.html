@@ -19,7 +19,38 @@
     </div>
 
     <div class="controls-panel">
-      <!-- контролы будут здесь -->
+      <div class="control-row">
+        <label class="control-label" for="valueInput">Value</label>
+        <input
+          class="control-input"
+          type="number"
+          id="valueInput"
+          min="0"
+          max="100"
+          value="0"
+        >
+        <span class="control-hint">0 – 100</span>
+      </div>
+
+      <div class="control-row">
+        <label class="control-label toggle-label" for="animateToggle">
+          Animate
+        </label>
+        <div class="toggle-wrap">
+          <input type="checkbox" id="animateToggle" class="toggle-checkbox">
+          <label for="animateToggle" class="toggle-switch"></label>
+        </div>
+      </div>
+
+      <div class="control-row">
+        <label class="control-label toggle-label" for="hideToggle">
+          Hide
+        </label>
+        <div class="toggle-wrap">
+          <input type="checkbox" id="hideToggle" class="toggle-checkbox">
+          <label for="hideToggle" class="toggle-switch"></label>
+        </div>
+      </div>
     </div>
 
   </div>
