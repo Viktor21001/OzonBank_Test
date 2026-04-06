@@ -32,3 +32,15 @@ body {
   text-transform: uppercase;
   opacity: 0.6;
 }
+
+.progress-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  height: 260px;
+  /* border: 2px dashed #9b59b6; */
+  border-radius: 4px;
+  padding: 20px;
+}
