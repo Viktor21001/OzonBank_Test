@@ -61,6 +61,7 @@
 
     let valueInput = document.getElementById('valueInput');
     let animateCheck = document.getElementById('animateToggle');
+    let hideCheck = document.getElementById('hideToggle');
 
     valueInput.addEventListener('input', function() {
       let v = parseInt(this.value, 10);
@@ -73,6 +74,10 @@
 
     animateCheck.addEventListener('change', function() {
       prog.setAnimated(this.checked);
+    });
+
+    hideCheck.addEventListener('change', function() {
+      prog.setHidden(this.checked);
     });
 
   </script>

@@ -12,6 +12,8 @@ function Progress(selector) {
   }
 
   this._value    = 0;
+  this._animated = false;
+  this._hidden   = false;
 
   this._buildSVG();
 }
@@ -84,5 +86,15 @@ Progress.prototype.setAnimated = function(on) {
         svg.style.transform = '';
       }
     }, 50);
+  }
+};
+
+Progress.prototype.setHidden = function(on) {
+  this._hidden = !!on;
+
+  if (on) {
+    this.container.classList.add('progress--hidden');
+  } else {
+    this.container.classList.remove('progress--hidden');
   }
 };
