@@ -49,6 +49,7 @@ Progress.prototype._buildSVG = function() {
   this.container.appendChild(svg);
   this._arc = progressCircle;
 };
+
 Progress.prototype.setValue = function(percent) {
   percent = parseFloat(percent);
 
@@ -67,4 +68,21 @@ Progress.prototype.setValue = function(percent) {
   }
 
   this._arc.setAttribute('stroke-dashoffset', offset);
+};
+
+Progress.prototype.setAnimated = function(on) {
+  this._animated = !!on;
+
+  if (on) {
+    this.container.classList.add('progress--animated');
+  } else {
+    this.container.classList.remove('progress--animated');
+    var self = this;
+    setTimeout(function() {
+      var svg = self.container.querySelector('svg');
+      if (svg) {
+        svg.style.transform = '';
+      }
+    }, 50);
+  }
 };

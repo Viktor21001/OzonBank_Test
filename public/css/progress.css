@@ -56,3 +56,17 @@ body {
   height: 100%;
   transform: rotate(-90deg);
 }
+
+@keyframes spin {
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(270deg); }
+}
+
+.progress-container.progress--animated svg {
+  animation: spin 2s linear infinite;
+  transform-origin: center center;
+}
+
+.progress-container.progress--hidden {
+  display: none;
+}

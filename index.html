@@ -10,7 +10,7 @@
 
   <div class="page-wrapper">
 
-    <h1 class="page-title">Progress Component</h1>
+    <h1 class="page-title">Progress</h1>
 
     <div class="progress-stage">
       <div id="progressBlock" class="progress-container">
@@ -60,6 +60,7 @@
     let prog = new Progress('#progressBlock');
 
     let valueInput = document.getElementById('valueInput');
+    let animateCheck = document.getElementById('animateToggle');
 
     valueInput.addEventListener('input', function() {
       let v = parseInt(this.value, 10);
@@ -68,6 +69,10 @@
       if (v > 100) v = 100;
       prog.setValue(v);
       if (this.value != v) this.value = v;
+    });
+
+    animateCheck.addEventListener('change', function() {
+      prog.setAnimated(this.checked);
     });
 
   </script>
