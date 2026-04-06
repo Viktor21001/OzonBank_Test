@@ -37,7 +37,7 @@ Progress.prototype._buildSVG = function() {
   progressCircle.setAttribute('cy', cy);
   progressCircle.setAttribute('r', RADIUS);
   progressCircle.setAttribute('fill', 'none');
-  progressCircle.setAttribute('stroke', '#9b59b6');
+  progressCircle.setAttribute('stroke', '#3700ff');
   progressCircle.setAttribute('stroke-width', STROKE_WIDTH);
   progressCircle.setAttribute('stroke-linecap', 'round');
   progressCircle.setAttribute('stroke-dasharray', CIRCUMFERENCE);
@@ -48,4 +48,23 @@ Progress.prototype._buildSVG = function() {
 
   this.container.appendChild(svg);
   this._arc = progressCircle;
+};
+Progress.prototype.setValue = function(percent) {
+  percent = parseFloat(percent);
+
+  if (isNaN(percent)) percent = 0;
+  if (percent < 0) percent = 0;
+  if (percent > 100) percent = 100;
+
+  this._value = percent;
+
+  let offset = CIRCUMFERENCE - (percent / 100) * CIRCUMFERENCE;
+
+  // КОСТЫЛЬ: при 100% stroke-linecap: round оставляет gap
+  // я знаю, что это не лучший способ, но работает
+  if (percent === 100) {
+    offset = -0.5;
+  }
+
+  this._arc.setAttribute('stroke-dashoffset', offset);
 };
