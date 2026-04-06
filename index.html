@@ -56,6 +56,21 @@
   </div>
 
   <script src="public/js/progress.js"></script>
+  <script>
+    let prog = new Progress('#progressBlock');
+
+    let valueInput = document.getElementById('valueInput');
+
+    valueInput.addEventListener('input', function() {
+      let v = parseInt(this.value, 10);
+      if (isNaN(v)) v = 0;
+      if (v < 0) v = 0;
+      if (v > 100) v = 100;
+      prog.setValue(v);
+      if (this.value != v) this.value = v;
+    });
+
+  </script>
 
 </body>
 </html>
