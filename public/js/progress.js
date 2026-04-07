@@ -76,12 +76,11 @@ Progress.prototype.setAnimated = function(on) {
   this._animated = !!on;
 
   if (on) {
-    this.container.classList.add('progress--animated');
+    this.container.classList.add('progress_animated');
   } else {
-    this.container.classList.remove('progress--animated');
-    var self = this;
-    setTimeout(function() {
-      var svg = self.container.querySelector('svg');
+    this.container.classList.remove('progress_animated');
+    setTimeout(() => {
+      const svg = this.container.querySelector('svg');
       if (svg) {
         svg.style.transform = '';
       }
@@ -93,8 +92,8 @@ Progress.prototype.setHidden = function(on) {
   this._hidden = !!on;
 
   if (on) {
-    this.container.classList.add('progress--hidden');
+    this.container.classList.add('progress_hidden');
   } else {
-    this.container.classList.remove('progress--hidden');
+    this.container.classList.remove('progress_hidden');
   }
 };

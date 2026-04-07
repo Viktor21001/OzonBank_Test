@@ -3,6 +3,19 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --progress-color: #0000ff;
+  --track-color: #e8e8ef;
+  --panel-bg: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-secondary: #333;
+  --border-light: #e0e0e0;
+  --input-bg: #fafafa;
+  --toggle-off: #ddd;
+  --toggle-on: #0000ff;
+  --focus-outline: #0000ff;
+}
  
 html, body {
   width: 100%;
@@ -13,19 +26,19 @@ html, body {
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #f4f4f8;
-  color: #1a1a2e;
+  color: var(--text-primary);
   -webkit-tap-highlight-color: transparent;
 }
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 16px 40px;
-  gap: 32px;
-  min-height: 100vh;
   justify-content: center;
+  padding: 48px 16px 16px;
+  width: 100%;
   height: 100vh;
-  overflow: hidden;
+  gap: 20px;
 }
 
 .page-title {
@@ -43,20 +56,8 @@ body {
   white-space: nowrap;
 }
 
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 16px 16px;
-  width: 100%;
-  height: 100vh;
-  gap: 20px;
-}
-
 .progress-stage {
   --stage-size: min(80vw, 45vh, 240px);
- 
   position: relative;
   display: flex;
   align-items: center;
@@ -88,12 +89,12 @@ body {
   to   { transform: rotate(270deg); }
 }
 
-.progress-container.progress--animated svg {
+.progress-container.progress_animated svg {
   animation: spin 2s linear infinite;
   transform-origin: center center;
 }
 
-.progress-container.progress--hidden {
+.progress-container.progress_hidden {
   display: none;
 }
 
@@ -103,7 +104,7 @@ body {
   gap: 12px;
   width: 100%;
   max-width: 300px;
-  background: #ffffff;
+  background: var(--panel-bg);
   border-radius: 14px;
   padding: 18px 16px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
@@ -120,7 +121,7 @@ body {
 .control-label {
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: var(--text-secondary);
   min-width: 68px;
   flex-shrink: 0;
 }
@@ -130,19 +131,19 @@ body {
 .control-input {
   height: 40px;
   width: 80px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-light);
   border-radius: 10px;
   padding: 0 10px;
   font-size: 16px;
-  color: #1a1a2e;
-  background: #fafafa;
+  color: var(--text-primary);
+  background: var(--input-bg);
   outline: none;
   transition: border-color 0.2s;
   -webkit-appearance: none;
 }
  
 .control-input:focus {
-  border-color: #2f00ff;
+  border-color: var(--progress-color);
   background: #fff;
 }
  
@@ -178,7 +179,7 @@ body {
   display: block;
   width: 48px;
   height: 28px;
-  background: #ddd;
+  background: var(--toggle-off);
   border-radius: 14px;
   cursor: pointer;
   position: relative;
@@ -199,7 +200,7 @@ body {
 }
  
 .toggle-checkbox:checked + .toggle-switch {
-  background: #0000ff;
+  background: var(--toggle-on);
 }
  
 .toggle-checkbox:checked + .toggle-switch::after {
@@ -207,7 +208,7 @@ body {
 }
  
 .toggle-checkbox:focus + .toggle-switch {
-  outline: 2px solid #9b59b6;
+  outline: 2px solid var(--focus-outline);
   outline-offset: 2px;
 }
 
