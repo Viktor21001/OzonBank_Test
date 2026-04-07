@@ -3,16 +3,17 @@
   margin: 0;
   padding: 0;
 }
-
+ 
 html, body {
+  width: 100%;
   height: 100%;
+  overflow: hidden;
 }
-
+ 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #f4f4f8;
   color: #1a1a2e;
-  min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
 }
 .page-wrapper {
@@ -28,30 +29,40 @@ body {
 }
 
 .page-title {
-  position: absolute;
-  top: 16px;
+  position: fixed;
+  top: 14px;
   left: 16px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: #444;
   text-transform: uppercase;
-  opacity: 0.6;
-  margin: 0;
-  z-index: 1;
+  opacity: 0.55;
+  z-index: 100;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px 16px;
+  width: 100%;
+  height: 100vh;
+  gap: 20px;
 }
 
 .progress-stage {
+  --stage-size: min(80vw, 45vh, 240px);
+ 
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 260px;
-  height: 260px;
-  border-radius: 4px;
-  padding: 20px;
-  width: min(50vw, 220px);
-  margin-bottom: 16px;
+  width: var(--stage-size);
+  height: var(--stage-size);
 }
 
 .progress-container {
@@ -60,6 +71,12 @@ body {
   position: relative;
 }
 
+.progress-container {
+  width: calc(var(--stage-size) - 40px);
+  height: calc(var(--stage-size) - 40px);
+  position: relative;
+}
+ 
 .progress-container svg {
   width: 100%;
   height: 100%;
@@ -83,39 +100,39 @@ body {
 .controls-panel {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
   max-width: 300px;
   background: #ffffff;
-  border-radius: 16px;
-  padding: 20px 16px;
+  border-radius: 14px;
+  padding: 18px 16px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-  margin-top: 8px;
+  flex-shrink: 0;
 }
-
+ 
 .control-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 44px;
+  min-height: 40px;
 }
-
+ 
 .control-label {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #333;
-  min-width: 72px;
+  min-width: 68px;
   flex-shrink: 0;
 }
-
+ 
 .toggle-label { cursor: pointer; }
-
+ 
 .control-input {
-  height: 44px;
-  width: 88px;
+  height: 40px;
+  width: 80px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
-  padding: 0 12px;
+  padding: 0 10px;
   font-size: 16px;
   color: #1a1a2e;
   background: #fafafa;
@@ -123,22 +140,22 @@ body {
   transition: border-color 0.2s;
   -webkit-appearance: none;
 }
-
+ 
 .control-input:focus {
-  border-color: #1900ff;
+  border-color: #2f00ff;
   background: #fff;
 }
-
+ 
 .control-input::-webkit-outer-spin-button,
 .control-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+ 
 .control-input[type=number] {
   -moz-appearance: textfield;
 }
-
+ 
 .control-hint {
   font-size: 12px;
   color: #aaa;
@@ -149,138 +166,184 @@ body {
   display: inline-flex;
   align-items: center;
 }
-
+ 
 .toggle-checkbox {
   position: absolute;
   width: 0;
   height: 0;
   opacity: 0;
 }
-
+ 
 .toggle-switch {
   display: block;
-  width: 52px;
-  height: 30px;
+  width: 48px;
+  height: 28px;
   background: #ddd;
-  border-radius: 15px;
+  border-radius: 14px;
   cursor: pointer;
   position: relative;
   transition: background 0.25s ease;
 }
-
+ 
 .toggle-switch::after {
   content: '';
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   transition: transform 0.25s ease;
 }
-
+ 
 .toggle-checkbox:checked + .toggle-switch {
-  background: #1100ff;
+  background: #0000ff;
 }
-
+ 
 .toggle-checkbox:checked + .toggle-switch::after {
-  transform: translateX(22px);
+  transform: translateX(20px);
 }
-
+ 
 .toggle-checkbox:focus + .toggle-switch {
-  outline: 2px solid #3300ff;
+  outline: 2px solid #9b59b6;
   outline-offset: 2px;
 }
 
-@media (max-height: 500px) and (orientation: landscape) {
+@media (orientation: landscape) {
   .page-wrapper {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 0 20px;
+    padding: 16px 24px 16px 16px;
+    gap: clamp(16px, 4vw, 60px);
   }
+ 
   .progress-stage {
-    width: 140px;
-    height: 140px;
-    margin-bottom: 0;
+    --stage-size: min(55vh, 50vw, 280px);
   }
+ 
   .controls-panel {
-    max-width: 260px;
-    margin-top: 0;
-  }
-  .page-title {
-    top: 8px;
-    left: 8px;
-    font-size: 12px;
+    width: auto;
+    min-width: 220px;
+    max-width: 280px;
   }
 }
 
-@media (min-height: 701px) and (min-width: 600px) and (max-width: 900px) {
-  .progress-stage {
-    width: 260px;
-    height: 260px;
-  }
-  .controls-panel {
-    max-width: 360px;
-    padding: 24px;
-  }
+@media (orientation: landscape) and (max-height: 450px) {
   .page-title {
-    font-size: 20px;
-    top: 20px;
+    font-size: 11px;
+    top: 10px;
+    left: 12px;
+  }
+ 
+  .page-wrapper {
+    padding: 10px 20px 10px 16px;
+    gap: clamp(12px, 3vw, 32px);
+  }
+ 
+  .progress-stage {
+    --stage-size: min(74vh, 38vw, 200px);
+    padding: 10px;
+  }
+ 
+  .controls-panel {
+    padding: 12px 14px;
+    gap: 8px;
+    min-width: 190px;
+    max-width: 230px;
+    border-radius: 10px;
+  }
+ 
+  .control-row {
+    min-height: 32px;
+  }
+ 
+  .control-label {
+    font-size: 12px;
+    min-width: 58px;
+  }
+ 
+  .control-input {
+    height: 32px;
+    width: 64px;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 0 8px;
+  }
+ 
+  .control-hint {
+    display: none;
+  }
+ 
+  .toggle-switch {
+    width: 40px;
+    height: 24px;
+    border-radius: 12px;
+  }
+ 
+  .toggle-switch::after {
+    width: 18px;
+    height: 18px;
+  }
+ 
+  .toggle-checkbox:checked + .toggle-switch::after {
+    transform: translateX(16px);
+  }
+}
+
+@media (min-width: 768px) and (orientation: portrait) {
+  .page-title {
+    font-size: 16px;
+    top: 18px;
     left: 20px;
   }
-}
-
-@media (min-width: 800px) and (max-width: 1200px) and (orientation: landscape),
-       (min-width: 900px) and (max-width: 1200px) {
+ 
   .page-wrapper {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
+    padding: 64px 32px 32px;
+    gap: 32px;
   }
+ 
   .progress-stage {
-    width: 280px;
-    height: 280px;
+    --stage-size: min(44vw, 40vh, 320px);
+    padding: 20px;
   }
-  .controls-panel {
-    max-width: 320px;
-    margin-top: 0;
-  }
-  .page-title {
-    font-size: 20px;
-  }
-}
-@media (min-width: 1200px) {
-  .progress-stage {
-    width: 340px;
-    height: 340px;
-  }
+ 
   .controls-panel {
     max-width: 380px;
-    padding: 28px;
-    gap: 20px;
+    padding: 24px 22px;
+    gap: 16px;
   }
-  .page-title {
-    font-size: 24px;
-    top: 24px;
-    left: 24px;
+ 
+  .control-row {
+    min-height: 48px;
   }
-}
-
-@media (min-width: 1800px) {
-  .progress-stage {
-    width: 450px;
-    height: 450px;
+ 
+  .control-label {
+    font-size: 16px;
+    min-width: 76px;
   }
-  .controls-panel {
-    max-width: 480px;
-    padding: 36px;
+ 
+  .control-input {
+    height: 48px;
+    width: 92px;
+    font-size: 16px;
+    border-radius: 12px;
   }
-  .page-title {
-    font-size: 28px;
+ 
+  .toggle-switch {
+    width: 54px;
+    height: 32px;
+    border-radius: 16px;
+  }
+ 
+  .toggle-switch::after {
+    width: 26px;
+    height: 26px;
+  }
+ 
+  .toggle-checkbox:checked + .toggle-switch::after {
+    transform: translateX(22px);
   }
 }
