@@ -22,15 +22,23 @@ body {
   padding: 24px 16px 40px;
   gap: 32px;
   min-height: 100vh;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .page-title {
+  position: absolute;
+  top: 16px;
+  left: 16px;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #444;
   text-transform: uppercase;
   opacity: 0.6;
+  margin: 0;
+  z-index: 1;
 }
 
 .progress-stage {
@@ -40,9 +48,10 @@ body {
   justify-content: center;
   width: 260px;
   height: 260px;
-  /* border: 2px dashed #9b59b6; */
   border-radius: 4px;
   padding: 20px;
+  width: min(50vw, 220px);
+  margin-bottom: 16px;
 }
 
 .progress-container {
@@ -74,13 +83,14 @@ body {
 .controls-panel {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   background: #ffffff;
   border-radius: 16px;
-  padding: 24px 20px;
+  padding: 20px 16px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  margin-top: 8px;
 }
 
 .control-row {
@@ -182,4 +192,95 @@ body {
 .toggle-checkbox:focus + .toggle-switch {
   outline: 2px solid #3300ff;
   outline-offset: 2px;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .page-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  .progress-stage {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 0;
+  }
+  .controls-panel {
+    max-width: 260px;
+    margin-top: 0;
+  }
+  .page-title {
+    top: 8px;
+    left: 8px;
+    font-size: 12px;
+  }
+}
+
+@media (min-height: 701px) and (min-width: 600px) and (max-width: 900px) {
+  .progress-stage {
+    width: 260px;
+    height: 260px;
+  }
+  .controls-panel {
+    max-width: 360px;
+    padding: 24px;
+  }
+  .page-title {
+    font-size: 20px;
+    top: 20px;
+    left: 20px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) and (orientation: landscape),
+       (min-width: 900px) and (max-width: 1200px) {
+  .page-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+  .progress-stage {
+    width: 280px;
+    height: 280px;
+  }
+  .controls-panel {
+    max-width: 320px;
+    margin-top: 0;
+  }
+  .page-title {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .progress-stage {
+    width: 340px;
+    height: 340px;
+  }
+  .controls-panel {
+    max-width: 380px;
+    padding: 28px;
+    gap: 20px;
+  }
+  .page-title {
+    font-size: 24px;
+    top: 24px;
+    left: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .progress-stage {
+    width: 450px;
+    height: 450px;
+  }
+  .controls-panel {
+    max-width: 480px;
+    padding: 36px;
+  }
+  .page-title {
+    font-size: 28px;
+  }
 }
